@@ -10,6 +10,7 @@ import {
 import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function CreateAccount(){
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ export default function CreateAccount(){
       };
       const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError('')
         //console.log(name, email, password);
         if (isLoading || name === "" || email === "" || password === "") return;
         
@@ -43,9 +45,9 @@ export default function CreateAccount(){
             await updateProfile(credentials.user, {
                 displayName: name,
               });
-              navigate("/"); // 페이지 이동
+              navigate("/"); // 리디렉션 페이지 이동
         } catch (e){
-            setError('');
+            setError(e.message);
         }finally{
             setLoading(false);
         }
@@ -84,6 +86,9 @@ export default function CreateAccount(){
             />
             </Form>
             {error !== "" ? <Error>{error}</Error> : null}
+            <Switcher>
+                Already have an account? <Link to="/login">Log in &rarr;</Link>
+            </Switcher>
         </Wrapper>
     );
 }
