@@ -7,10 +7,11 @@ import {
     Title,
     Wrapper,
   } from "../components/auth-components";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "@firebase/auth";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import GithubButton from "../components/github-btn";
 
 export default function Login(){
     const navigate = useNavigate();
@@ -76,6 +77,7 @@ export default function Login(){
                 Don't have an account?{" "}
                 <Link to="/create-account">Create one &rarr;</Link>
             </Switcher>
+            <GithubButton/>
         </Wrapper>
     );
 }
