@@ -3,5 +3,5 @@
 - react
 - vite
 - typescript
-- firebase
+- firebase(Social Authentication,File Upload,Cloud Firestore DB, Storage, Hosting)
 - styled-components
